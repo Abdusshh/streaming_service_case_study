@@ -16,7 +16,7 @@ const videoData = [
 ];
 
 // Dynamically import Plyr without SSR
-const Plyr = dynamic(() => import('plyr'), {
+const Plyr = dynamic(() => import('plyr') as any, {
   ssr: false,
 });
 
