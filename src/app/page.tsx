@@ -3,7 +3,9 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search"; // Material UI search icon
 import Image from "next/image";
-import CategorySection from "./CategorySection"; // Import the CategorySection component
+import dynamic from "next/dynamic"; 
+
+const CategorySection = dynamic(() => import("./CategorySection"), { ssr: false });
 // Sample video data for each category (reusing same images)
 const trendingVideos = [
   { id: 1, src: "/dune.jpg", alt: "Dune Movie", title: "Dune" },

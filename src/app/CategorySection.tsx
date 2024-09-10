@@ -1,19 +1,8 @@
 import Image from "next/image";
 import { useRef } from "react";
-import dynamic from "next/dynamic";
-
-const IconButton = dynamic(() => import("@mui/material/IconButton"), {
-  ssr: false,
-});
-
-const ArrowBackIcon = dynamic(() => import("@mui/icons-material/ArrowBack"), {
-  ssr: false,
-});
-
-const ArrowForwardIcon = dynamic(() => import("@mui/icons-material/ArrowForward"), {
-  ssr: false,
-});
-
+import { IconButton } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // Define the type for the video object
 type Video = {
