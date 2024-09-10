@@ -11,7 +11,10 @@ type Video = {
 
 // Reusable video thumbnail component
 const VideoThumbnail = ({ video }: { video: Video }) => (
-  <a href={`/video/${video.id}?id=${video.id}`} className="w-[19.3%] flex-shrink-0">
+  <a
+    href={`/video/${video.id}?id=${video.id}`}
+    className="w-[19.3%] flex-shrink-0"
+  >
     <div className="w-full h-0 pb-[56.25%] relative">
       <Image
         src={video.src}
@@ -25,7 +28,13 @@ const VideoThumbnail = ({ video }: { video: Video }) => (
 );
 
 // Reusable Category Component
-const CategorySection = ({ title, videos }: { title: string; videos: Video[] }) => {
+const CategorySection = ({
+  title,
+  videos,
+}: {
+  title: string;
+  videos: Video[];
+}) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: string) => {

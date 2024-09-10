@@ -376,11 +376,19 @@ export default function Home() {
         <div className="flex justify-between items-center w-full max-w-7xl">
           {/* Icon Area */}
           <div className="mr-4">
-            <Image src="/favicon.ico" alt="Logo Icon" width={70} height={70} className="rounded-full" />
+            <Image
+              src="/favicon.ico"
+              alt="Logo Icon"
+              width={70}
+              height={70}
+              className="rounded-full"
+            />
           </div>
 
           {/* Header Title */}
-          <h1 className="text-5xl font-extrabold text-center flex-1">Streamingtor</h1>
+          <h1 className="text-5xl font-extrabold text-center flex-1">
+            Streamingtor
+          </h1>
 
           {/* Material UI Search Bar */}
           <div className="ml-4 w-1/2">
@@ -400,7 +408,9 @@ export default function Home() {
           </div>
         </div>
 
-        <p className="text-xl text-gray-300 text-center mt-4">Watch your favorite movies and TV shows anytime, anywhere</p>
+        <p className="text-xl text-gray-300 text-center mt-4">
+          Watch your favorite movies and TV shows anytime, anywhere
+        </p>
       </header>
 
       {/* Category Sections */}
