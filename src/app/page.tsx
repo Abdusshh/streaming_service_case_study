@@ -396,13 +396,15 @@ export default function Home() {
               fullWidth
               variant="outlined"
               placeholder="Search..."
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-                className: "bg-white rounded-full",
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                  className: "bg-white rounded-full",
+                },
               }}
             />
           </div>

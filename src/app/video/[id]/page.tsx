@@ -71,7 +71,7 @@ const VideoPage = () => {
     }
   }, [playerRef]);
 
-  if (!video) return <p>Video could not be found!</p>; // If the video data is not found, display an error message
+  if (!video) return <p>Loading...</p>; // If the video data is not found, display an error message
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between px-24 pb-24 bg-black text-white">
