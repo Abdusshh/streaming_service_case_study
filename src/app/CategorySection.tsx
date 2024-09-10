@@ -42,7 +42,7 @@ const CategorySection = ({
 
   const scroll = (direction: string) => {
     if (scrollRef.current) {
-      const videoWidth = scrollRef.current.children[0].clientWidth + 24; // 24px beacuse of space-x-6 margin between videos
+      const videoWidth = scrollRef.current.children[0].clientWidth + 24; // 24px because of space-x-6 margin between videos
       const scrollAmount =
         direction === "left"
           ? scrollRef.current.scrollLeft - videoWidth * 5
@@ -59,7 +59,7 @@ const CategorySection = ({
       <div className="relative w-full">
         {/* Left Scroll Button */}
         <IconButton
-          className="absolute left-[-35px] z-10 p-3 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
+          className="absolute left-[-35px] z-[50] p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
           onClick={() => scroll("left")}
           style={{ zIndex: 1 }}
         >
@@ -68,8 +68,9 @@ const CategorySection = ({
 
         {/* Video Thumbnails */}
         <div
-          className="flex space-x-6 overflow-x-hidden scrollbar-hide "
+          className="flex space-x-6 overflow-x-scroll scrollbar-hide px-10"
           ref={scrollRef}
+          style={{ scrollbarWidth: "none" }} // Firefox hides scrollbar
         >
           {videos.map((video) => (
             <VideoThumbnail key={video.id} video={video} />
@@ -78,7 +79,7 @@ const CategorySection = ({
 
         {/* Right Scroll Button */}
         <IconButton
-          className="absolute right-[-35px] z-10 p-3 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
+          className="absolute right-[-35px] z-[50] p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
           onClick={() => scroll("right")}
           style={{ zIndex: 1 }}
         >
