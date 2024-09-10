@@ -9,10 +9,10 @@ import HomeIcon from "@mui/icons-material/Home"; // Import Home icon from Materi
 
 // Mock data of videos (You could fetch this data from an API or a database in a real application)
 const videoData = [
-  { id: "1", title: "Dune", description: "A science fiction epic.", videoUrl: "https://player.vimeo.com/video/76979871" },
-  { id: "2", title: "Kanye West", description: "A documentary about Kanye West.", videoUrl: "https://player.vimeo.com/video/76979871" },
-  { id: "3", title: "Lion King", description: "A documentary on lions.", videoUrl: "https://player.vimeo.com/video/76979871" },
-  { id: "0", title: "Castle In the Sky", description: "An animated movie.", videoUrl: "https://player.vimeo.com/video/76979871" },
+  { id: 1, title: "Dune", description: "A science fiction epic.", videoUrl: "https://player.vimeo.com/video/76979871" },
+  { id: 2, title: "Kanye West", description: "A documentary about Kanye West.", videoUrl: "https://player.vimeo.com/video/76979871" },
+  { id: 3, title: "Lion King", description: "A documentary on lions.", videoUrl: "https://player.vimeo.com/video/76979871" },
+  { id: 0, title: "Castle In the Sky", description: "An animated movie.", videoUrl: "https://player.vimeo.com/video/76979871" },
 ];
 
 // Dynamically import Plyr without SSR
@@ -24,7 +24,7 @@ const VideoPage = () => {
   const playerRef = useRef(null);
   const searchParams = useSearchParams(); // Replace useRouter with useSearchParams
 
-  const id = parseInt(searchParams.get("id")) % videoData.length ; // Get the video id from the query parameter
+  const id = parseInt(searchParams.get("id") ?? "") % videoData.length ; // Get the video id from the query parameter
 
 
   // Find the video data based on the id

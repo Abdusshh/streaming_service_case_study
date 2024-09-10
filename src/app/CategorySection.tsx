@@ -1,14 +1,18 @@
 import Image from "next/image";
 import { useRef } from "react";
 
+// Define the type for the video object
+type Video = {
+  id: number;
+  src: string;
+  alt: string;
+  title: string;
+};
+
 // Reusable video thumbnail component
-const VideoThumbnail = ({ video }) => (
+const VideoThumbnail = ({ video }: { video: Video }) => (
   <a href={`/video/${video.id}?id=${video.id}`} className="w-[19.3%] flex-shrink-0">
-    {" "}
-    {/* Each video takes 20% of the container width */}
     <div className="w-full h-0 pb-[56.25%] relative">
-      {" "}
-      {/* Aspect ratio: 16:9 */}
       <Image
         src={video.src}
         alt={video.alt}
@@ -21,10 +25,10 @@ const VideoThumbnail = ({ video }) => (
 );
 
 // Reusable Category Component
-const CategorySection = ({ title, videos }) => {
-  const scrollRef = useRef(null);
+const CategorySection = ({ title, videos }: { title: string; videos: Video[] }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction) => {
+  const scroll = (direction: string) => {
     if (scrollRef.current) {
       const videoWidth = scrollRef.current.clientWidth / 5; // Width of one video (container shows 5 videos)
       const scrollAmount =
