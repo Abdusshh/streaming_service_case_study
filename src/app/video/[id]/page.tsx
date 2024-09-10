@@ -71,7 +71,7 @@ const VideoPage = () => {
           className="ml-4 flex items-center bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-full shadow-md transition-all"
         >
           <HomeIcon className="mr-2" />
-          Home
+          Homepage
         </a>
       </header>
 
