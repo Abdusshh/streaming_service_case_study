@@ -1,8 +1,5 @@
 import Image from "next/image";
 import { useRef } from "react";
-import { IconButton } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // Define the type for the video object
 type Video = {
@@ -42,7 +39,7 @@ const CategorySection = ({
 
   const scroll = (direction: string) => {
     if (scrollRef.current) {
-      const videoWidth = scrollRef.current.children[0].clientWidth + 24; // 24px because of space-x-6 margin between videos
+      const videoWidth = scrollRef.current.children[0].clientWidth + 24;
       const scrollAmount =
         direction === "left"
           ? scrollRef.current.scrollLeft - videoWidth * 5
@@ -58,19 +55,30 @@ const CategorySection = ({
       </h2>
       <div className="relative w-full">
         {/* Left Scroll Button */}
-        <IconButton
-          className="absolute left-[-35px] z-[50] p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
+        <button
+          className="absolute left-0 z-10 p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg flex justify-center items-center top-1/2 -translate-y-1/2 transition-all transform hover:scale-110"
           onClick={() => scroll("left")}
-          style={{ zIndex: 1 }}
         >
-          <ArrowBackIcon fontSize="large" />
-        </IconButton>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
+          </svg>
+        </button>
 
         {/* Video Thumbnails */}
         <div
-          className="flex space-x-6 overflow-x-scroll scrollbar-hide px-10"
+          className="flex space-x-6 overflow-x-hidden scrollbar-hide"
           ref={scrollRef}
-          style={{ scrollbarWidth: "none" }} // Firefox hides scrollbar
         >
           {videos.map((video) => (
             <VideoThumbnail key={video.id} video={video} />
@@ -78,13 +86,25 @@ const CategorySection = ({
         </div>
 
         {/* Right Scroll Button */}
-        <IconButton
-          className="absolute right-[-35px] z-[50] p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg top-1/2 -translate-y-1/2 transition-all"
+        <button
+          className="absolute right-0 z-10 p-3 w-12 h-12 bg-gray-800 hover:bg-gray-600 text-white rounded-full shadow-lg flex justify-center items-center top-1/2 -translate-y-1/2 transition-all transform hover:scale-110"
           onClick={() => scroll("right")}
-          style={{ zIndex: 1 }}
         >
-          <ArrowForwardIcon fontSize="large" />
-        </IconButton>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </button>
       </div>
     </section>
   );
