@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Transkriptor",
-  description: "Convert Audio to Text",
+  title: "Streamingtor",
+  description: "Streaming platform where you can watch your favourite shows",
 };
 
 export default function RootLayout({
