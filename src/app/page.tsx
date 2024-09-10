@@ -1,131 +1,412 @@
+"use client"; // Ensure the code runs on the client side only
+
+import { TextField, InputAdornment } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search"; // Material UI search icon
 import Image from "next/image";
+import CategorySection from "./CategorySection"; // Import the CategorySection component
+// Sample video data for each category (reusing same images)
+const trendingVideos = [
+  { id: 1, src: "/dune.jpg", alt: "Dune Movie", title: "Dune" },
+  {
+    id: 2,
+    src: "/kanye.jpg",
+    alt: "Kanye West Concert",
+    title: "Kanye West Live",
+  },
+  {
+    id: 3,
+    src: "/documentary.jpg",
+    alt: "Documentary on Lions",
+    title: "Lion King",
+  },
+  {
+    id: 4,
+    src: "/ghibli.png",
+    alt: "Studio Ghibli Animation",
+    title: "Castle In the Sky",
+  },
+  {
+    id: 5,
+    src: "/dune.jpg",
+    alt: "Dune Sci-Fi Movie",
+    title: "Dune - Sci-Fi Adventure",
+  },
+  {
+    id: 6,
+    src: "/kanye.jpg",
+    alt: "Kanye West Performance",
+    title: "Kanye West - Live Concert",
+  },
+  {
+    id: 7,
+    src: "/documentary.jpg",
+    alt: "Lion King Documentary",
+    title: "The Lion King - Documentary",
+  },
+  {
+    id: 8,
+    src: "/ghibli.png",
+    alt: "Ghibli Fantasy Film",
+    title: "Castle In the Sky - Ghibli",
+  },
+  {
+    id: 9,
+    src: "/dune.jpg",
+    alt: "Dune Movie Poster",
+    title: "Dune - Movie Poster",
+  },
+  {
+    id: 10,
+    src: "/kanye.jpg",
+    alt: "Kanye West Live",
+    title: "Kanye West - Greatest Hits",
+  },
+  {
+    id: 11,
+    src: "/documentary.jpg",
+    alt: "Lion King Wildlife",
+    title: "Lion King - Wildlife Film",
+  },
+  {
+    id: 12,
+    src: "/ghibli.png",
+    alt: "Castle In the Sky Poster",
+    title: "Castle In the Sky - Animation",
+  },
+  {
+    id: 13,
+    src: "/dune.jpg",
+    alt: "Dune - Sci-Fi Thriller",
+    title: "Dune - Sci-Fi Epic",
+  },
+  {
+    id: 14,
+    src: "/kanye.jpg",
+    alt: "Kanye West Music",
+    title: "Kanye West - Music Video",
+  },
+  {
+    id: 15,
+    src: "/documentary.jpg",
+    alt: "Lion King Wildlife Documentary",
+    title: "Lion King - Safari Adventures",
+  },
+  {
+    id: 16,
+    src: "/ghibli.png",
+    alt: "Ghibli Studio Animation",
+    title: "Castle In the Sky - Studio Ghibli",
+  },
+  {
+    id: 17,
+    src: "/dune.jpg",
+    alt: "Dune Film",
+    title: "Dune - Ultimate Edition",
+  },
+  {
+    id: 18,
+    src: "/kanye.jpg",
+    alt: "Kanye West Show",
+    title: "Kanye West - Best Performances",
+  },
+  {
+    id: 19,
+    src: "/documentary.jpg",
+    alt: "Lion King Nature",
+    title: "The Lion King - Nature Documentary",
+  },
+  {
+    id: 20,
+    src: "/ghibli.png",
+    alt: "Castle In the Sky Fantasy",
+    title: "Castle In the Sky - Fantasy World",
+  },
+];
+
+const awardWinning = [
+  {
+    id: 1,
+    src: "/dune.jpg",
+    alt: "Award-Winning Dune",
+    title: "Award Winner - Dune",
+  },
+  {
+    id: 2,
+    src: "/kanye.jpg",
+    alt: "Kanye West Music Award",
+    title: "Award Winner - Kanye West",
+  },
+  {
+    id: 3,
+    src: "/documentary.jpg",
+    alt: "Award-Winning Lion Documentary",
+    title: "Award Winner - Lion King",
+  },
+  {
+    id: 4,
+    src: "/ghibli.png",
+    alt: "Award-Winning Ghibli Film",
+    title: "Award Winner - Castle In the Sky",
+  },
+  {
+    id: 5,
+    src: "/dune.jpg",
+    alt: "Best Sci-Fi Movie Dune",
+    title: "Best Sci-Fi - Dune",
+  },
+  {
+    id: 6,
+    src: "/kanye.jpg",
+    alt: "Best Music Video Kanye",
+    title: "Best Music Video - Kanye West",
+  },
+  {
+    id: 7,
+    src: "/documentary.jpg",
+    alt: "Best Documentary Lion King",
+    title: "Best Documentary - Lion King",
+  },
+  {
+    id: 8,
+    src: "/ghibli.png",
+    alt: "Best Animation Ghibli",
+    title: "Best Animation - Castle In the Sky",
+  },
+  {
+    id: 9,
+    src: "/dune.jpg",
+    alt: "Best Cinematography Dune",
+    title: "Best Cinematography - Dune",
+  },
+  {
+    id: 10,
+    src: "/kanye.jpg",
+    alt: "Best Live Performance Kanye",
+    title: "Best Performance - Kanye West",
+  },
+  {
+    id: 11,
+    src: "/documentary.jpg",
+    alt: "Best Wildlife Documentary",
+    title: "Best Wildlife Documentary - Lion King",
+  },
+  {
+    id: 12,
+    src: "/ghibli.png",
+    alt: "Best Animation Film",
+    title: "Best Animation Film - Ghibli",
+  },
+  {
+    id: 13,
+    src: "/dune.jpg",
+    alt: "Top Sci-Fi Dune",
+    title: "Top Sci-Fi - Dune",
+  },
+  {
+    id: 14,
+    src: "/kanye.jpg",
+    alt: "Top Music Artist Kanye",
+    title: "Top Artist - Kanye West",
+  },
+  {
+    id: 15,
+    src: "/documentary.jpg",
+    alt: "Top Nature Documentary",
+    title: "Top Documentary - Lion King",
+  },
+  {
+    id: 16,
+    src: "/ghibli.png",
+    alt: "Top Fantasy Animation",
+    title: "Top Fantasy Animation - Ghibli",
+  },
+  {
+    id: 17,
+    src: "/dune.jpg",
+    alt: "Epic Sci-Fi Dune",
+    title: "Epic Sci-Fi - Dune",
+  },
+  {
+    id: 18,
+    src: "/kanye.jpg",
+    alt: "Top Music Performer Kanye",
+    title: "Top Performer - Kanye West",
+  },
+  {
+    id: 19,
+    src: "/documentary.jpg",
+    alt: "Top Wildlife Documentary",
+    title: "Top Wildlife Documentary - Lion King",
+  },
+  {
+    id: 20,
+    src: "/ghibli.png",
+    alt: "Top Fantasy Film",
+    title: "Top Fantasy Film - Castle In the Sky",
+  },
+];
+
+const newReleases = [
+  {
+    id: 1,
+    src: "/dune.jpg",
+    alt: "New Release Dune",
+    title: "New Release - Dune",
+  },
+  {
+    id: 2,
+    src: "/kanye.jpg",
+    alt: "New Kanye West Release",
+    title: "New Release - Kanye West",
+  },
+  {
+    id: 3,
+    src: "/documentary.jpg",
+    alt: "New Lion King Documentary",
+    title: "New Release - Lion King",
+  },
+  {
+    id: 4,
+    src: "/ghibli.png",
+    alt: "New Ghibli Release",
+    title: "New Release - Castle In the Sky",
+  },
+  {
+    id: 5,
+    src: "/dune.jpg",
+    alt: "Latest Dune Release",
+    title: "Latest Release - Dune",
+  },
+  {
+    id: 6,
+    src: "/kanye.jpg",
+    alt: "Latest Kanye West Song",
+    title: "Latest Release - Kanye West",
+  },
+  {
+    id: 7,
+    src: "/documentary.jpg",
+    alt: "Latest Lion Documentary",
+    title: "Latest Release - Lion King",
+  },
+  {
+    id: 8,
+    src: "/ghibli.png",
+    alt: "Latest Ghibli Film",
+    title: "Latest Release - Castle In the Sky",
+  },
+  {
+    id: 9,
+    src: "/dune.jpg",
+    alt: "Dune - New Film",
+    title: "Dune - Latest Edition",
+  },
+  {
+    id: 10,
+    src: "/kanye.jpg",
+    alt: "Kanye West New Show",
+    title: "Kanye West - Latest Show",
+  },
+  {
+    id: 11,
+    src: "/documentary.jpg",
+    alt: "New Wildlife Documentary",
+    title: "Lion King - Wildlife New Release",
+  },
+  {
+    id: 12,
+    src: "/ghibli.png",
+    alt: "New Studio Ghibli Film",
+    title: "Castle In the Sky - Latest Animation",
+  },
+  {
+    id: 13,
+    src: "/dune.jpg",
+    alt: "New Dune Feature",
+    title: "New Dune Feature",
+  },
+  {
+    id: 14,
+    src: "/kanye.jpg",
+    alt: "Kanye West Latest Performance",
+    title: "Kanye West - New Release",
+  },
+  {
+    id: 15,
+    src: "/documentary.jpg",
+    alt: "New Lion King Wildlife",
+    title: "New Wildlife - Lion King",
+  },
+  {
+    id: 16,
+    src: "/ghibli.png",
+    alt: "Ghibli Fantasy New Release",
+    title: "Ghibli - Fantasy New Release",
+  },
+  {
+    id: 17,
+    src: "/dune.jpg",
+    alt: "New Edition Dune",
+    title: "Dune - New Edition Release",
+  },
+  {
+    id: 18,
+    src: "/kanye.jpg",
+    alt: "New Kanye West Track",
+    title: "Kanye West - New Track Release",
+  },
+  {
+    id: 19,
+    src: "/documentary.jpg",
+    alt: "Lion King New Nature Documentary",
+    title: "Lion King - Nature Documentary",
+  },
+  {
+    id: 20,
+    src: "/ghibli.png",
+    alt: "New Animation Release",
+    title: "Castle In the Sky - New Release",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Welcome to Transkriptor! Start your journey by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://transkriptor.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Powered by{" "}
-            <Image
-              src="/transkriptor-text-logo.png"
-              alt="Transkriptor Logo"
-              className="dark:invert"
-              width={200}
-              height={48}
-              priority
+    <main className="flex min-h-screen flex-col items-center justify-between px-24 pb-24 bg-black text-white">
+      <header className="w-full flex flex-col items-center justify-center py-16">
+        <div className="flex justify-between items-center w-full max-w-7xl">
+          {/* Icon Area */}
+          <div className="mr-4">
+            <Image src="/favicon.ico" alt="Logo Icon" width={70} height={70} className="rounded-full" />
+          </div>
+
+          {/* Header Title */}
+          <h1 className="text-5xl font-extrabold text-center flex-1">Streamingtor</h1>
+
+          {/* Material UI Search Bar */}
+          <div className="ml-4 w-1/2">
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Search..."
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+                className: "bg-white rounded-full",
+              }}
             />
-          </a>
+          </div>
         </div>
-      </div>
 
-      <div className="relative z-[-1] flex place-items-center justify-around before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/upload-video-audio.webp"
-          alt="Transkriptor Icon 1"
-          width={250}
-          height={50}
-          priority
-        />
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/transcribe-audio-into-text.webp"
-          alt="Transkriptor Icon 2"
-          width={250}
-          height={50}
-          priority
-        />
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/download-audio-transcription.webp"
-          alt="Transkriptor Icon 3"
-          width={250}
-          height={75}
-          priority
-        />
-      </div>
+        <p className="text-xl text-gray-300 text-center mt-4">Watch your favorite movies and TV shows anytime, anywhere</p>
+      </header>
 
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://transkriptor.com"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Blogs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Transkriptor's features and use cases.
-          </p>
-        </a>
-
-        <a
-          href="https://app.transkriptor.com/register"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Transkriptor features in an interactive way with&nbsp; Transkriptor Web App!
-          </p>
-        </a>
-
-        <a
-          href="https://transkriptor.onelink.me/XyFY"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Applications{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Discover the power of Transkriptor on the go with our mobile applications.
-            Available on both iOS and Android, our apps allow you to convert audio to text anytime, anywhere.
-            ü          </p>
-        </a>
-
-        <a
-          href="https://support.transkriptor.com/en"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Support{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Need help? Our support team is here to assist you with any questions.
-          </p>
-        </a>
-      </div>
+      {/* Category Sections */}
+      <CategorySection title="Trending Videos" videos={trendingVideos} />
+      <CategorySection title="Award Winning" videos={awardWinning} />
+      <CategorySection title="New Releases" videos={newReleases} />
     </main>
   );
 }

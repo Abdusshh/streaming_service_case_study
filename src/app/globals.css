@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'plyr/dist/plyr.css';
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -31,3 +33,14 @@ body {
     text-wrap: balance;
   }
 }
+
+.video-thumbnail {
+  width: 250px;
+  height: 150px;
+  position: relative;
+}
+
+.video-thumbnail img {
+  object-fit: cover; /* Ensures the image is cropped */
+}
+
