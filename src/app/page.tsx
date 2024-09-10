@@ -3,9 +3,7 @@
 import { TextField, InputAdornment } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search"; // Material UI search icon
 import Image from "next/image";
-import dynamic from "next/dynamic"; 
-
-const CategorySection = dynamic(() => import("./CategorySection"), { ssr: false });
+import CategorySection from "./CategorySection"; // Import the CategorySection component
 // Sample video data for each category (reusing same images)
 const trendingVideos = [
   { id: 1, src: "/dune.jpg", alt: "Dune Movie", title: "Dune" },
@@ -398,13 +396,15 @@ export default function Home() {
               fullWidth
               variant="outlined"
               placeholder="Search..."
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-                className: "bg-white rounded-full",
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchIcon />
+                    </InputAdornment>
+                  ),
+                  className: "bg-white rounded-full",
+                },
               }}
             />
           </div>
